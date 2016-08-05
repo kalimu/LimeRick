@@ -5,7 +5,7 @@
 \title{Function direclty calling the LimeSurvey API
 todo: documentation}
 \usage{
-lsAPI(lsAPIurl, method, params)
+lsAPI(lsAPIurl, method, params = NULL)
 }
 \description{
 Function direclty calling the LimeSurvey API
