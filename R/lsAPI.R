@@ -1,4 +1,4 @@
-#' Function direclty calling the LimeSurvey API
+#' Function directly calling the LimeSurvey API
 #' todo: documentation
 #' @export
 
@@ -20,10 +20,18 @@ lsAPI = function(lsAPIurl,
 
 
     # the API call
-    apiResponse = httr::POST(lsAPIurl,
-                             httr::content_type_json(),
-                             body = bodyJSON
-                             )
+    # apiResponse = httr::POST(lsAPIurl,
+    #                          httr::content_type_json(),
+    #                          body = bodyJSON
+    #                          )
+    # RETRY() function allows you to retry a request multiple times
+    # until it succeeds, if you you are trying to talk to an unreliable service
+
+    apiResponse = httr::RETRY("POST", lsAPIurl,
+                httr::content_type_json(),
+                body = bodyJSON
+                )
+
 
     # checking status code;
     # suprisingly API returns code 200 event if something is not ok (wrong password)

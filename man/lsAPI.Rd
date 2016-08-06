@@ -2,13 +2,13 @@
 % Please edit documentation in R/lsAPI.R
 \name{lsAPI}
 \alias{lsAPI}
-\title{Function direclty calling the LimeSurvey API
+\title{Function directly calling the LimeSurvey API
 todo: documentation}
 \usage{
 lsAPI(lsAPIurl, method, params = NULL)
 }
 \description{
-Function direclty calling the LimeSurvey API
+Function directly calling the LimeSurvey API
 todo: documentation
 }
 
