@@ -5,7 +5,7 @@
 \title{Function getting and releasing LimeSurvey API session key
 todo: documentation}
 \usage{
-lsSessionKey(action = "release", user = NULL, pass = NULL, ...)
+lsSessionKey(lsAPIurl, action = "release", user = NULL, pass = NULL)
 }
 \description{
 Function getting and releasing LimeSurvey API session key

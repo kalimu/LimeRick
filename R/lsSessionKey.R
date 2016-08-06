@@ -14,22 +14,21 @@
 # but the API user must be set as a special user with limited privileges not a superadministrator (!)
 
 
-lsSessionKey = function(#lsAPIurl,
+lsSessionKey = function(lsAPIurl,
                         action = "release",
                         user = NULL,
-                        pass = NULL,
-                        ...
+                        pass = NULL
                         ){
 
     if (action == "release") {
 
-        lsAPI(LimeSurveyAPI, method = "release_session_key")
+        lsAPI(lsAPIurl, method = "release_session_key")
 
     } else if (action == "get") {
 
         params = list(admin = user, password = pass)
 
-        lsAPI(LimeSurveyAPI, method = "get_session_key", params)
+        lsAPI(lsAPIurl, method = "get_session_key", params)
 
     }
 
