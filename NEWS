@@ -1,5 +1,6 @@
 LimeRick 0.0.0.9001
 ====================
 
+* function lsSessionKey for getting and releasing LimeSurvey session key
 * error handling in API calls
 * low-level funciton for LimeSurvey API calls (lsAPI)
