@@ -23,6 +23,91 @@
 # * @return array|string On success: Requested file as base 64-encoded string. On failure array with error information
 # * */
 
+lsGetResponsesAll = function(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus,# = "all",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          ){
+                          
+                          lsGetResponses(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus = "all",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          )
+                          
+                          }
+
+lsGetResponsesComplete = function(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus,# = "all",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          ){
+                          
+                          lsGetResponses(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus = "complete",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          )
+                          
+                          }
+
+lsGetResponsesIncomplete = function(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus,# = "all",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          ){
+                          
+                          lsGetResponses(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          completionStatus = "incomplete",
+                          documentType = "csv",
+                          languageCode = "en",
+                          headingType = "code",
+                          responseType = "long",
+                          fromResponseID = NULL,
+                          toResponseID = NULL,
+                          fields = NULL
+                          )
+                          
+                          }
+
+
 lsGetResponses = function(lsAPIurl,
                           sessionKey,
                           surveyID,
