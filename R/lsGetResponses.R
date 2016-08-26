@@ -165,3 +165,23 @@ lsGetResponses = function(lsAPIurl,
     df
 
 }
+
+
+
+lsGetQuestionProperty = function(sessionKey,
+                          questionID,
+                          #questionProperty,
+                          languageCode = "en",
+                          ){
+                          
+              params = list(sSessionKey = sessionKey,
+                  iQuestionID = questionID,
+                  aQuestionSettings = c("available_answers","subquestions","attributes","attributes_lang","answeroptions","defaultvalue"),
+                  sLanguageCode = languageCode,
+                  )
+                                  
+                                  data2 = lsAPI(lsAPIurl, method = "get_question_properties", params)
+                                  
+                                  #beta - 1D array only  
+                                  data2
+                          }
