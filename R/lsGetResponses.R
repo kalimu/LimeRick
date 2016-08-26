@@ -168,7 +168,7 @@ lsGetResponses = function(lsAPIurl,
 
 
 
-lsGetQuestionProperty = function(sessionKey,
+lsGetQuestionProperties = function(sessionKey,
                           questionID,
                           #questionProperty,
                           languageCode = "en",
