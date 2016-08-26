@@ -26,15 +26,17 @@
 lsGetResponses = function(lsAPIurl,
                           sessionKey,
                           surveyID,
+                          completionStatus,# = "all",
                           documentType = "csv",
                           languageCode = "en",
-                          completionStatus = "all",
                           headingType = "code",
                           responseType = "long",
                           fromResponseID = NULL,
                           toResponseID = NULL,
                           fields = NULL
                           ){
+
+    if {missing(completionStatus) {completionStatus="all"}}
 
     # todo: wokring with other document types (JSON especially; is a bit
     # problematic)
