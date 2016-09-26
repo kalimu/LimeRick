@@ -44,6 +44,9 @@ lsGetResponses = function(lsAPIurl,
 
     # todo: implement from and to ResponseID
 
+    if (!completionStatus %in% c("all", "complete", "incomplete"))
+         stop("Wrong completionStatus parameter")
+
 
     # setting parameters for API call
     params = list(sSessionKey = sessionKey,
