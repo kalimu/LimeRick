@@ -64,8 +64,8 @@ lsAPI = function(lsAPIurl,
 
     } else {
 
-        cat('\n', httr::http_status(apiResult)$message)
-        cat('\n', httr::content(apiResult)$error)
+        cat('\n', httr::http_status(apiResponse)$message)
+        #cat('\n', httr::content(apiResult)$error)
 
         return
 
