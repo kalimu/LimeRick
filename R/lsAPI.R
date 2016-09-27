@@ -10,8 +10,10 @@ lsAPI = function(lsAPIurl,
                  params = NULL
                  ){
 
-    if (missing(lsAPIurl)) stop("Need to specify API URL")
-    if (missing(method)) stop("Need to specify method function for the API")
+    if (missing(lsAPIurl))
+        stop("Need to specify LimeSurvey API URL (lsAPIurl).")
+    if (missing(method))
+        stop("Need to specify method function for the LimeSurvey API.")
 
     # preparing the body of the API call in JSON format
     bodyJSON = list(method = method,

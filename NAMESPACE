@@ -2,4 +2,5 @@
 
 export(lsAPI)
 export(lsGetResponses)
+export(lsList)
 export(lsSessionKey)
