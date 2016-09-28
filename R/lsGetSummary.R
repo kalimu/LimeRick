@@ -8,8 +8,7 @@
 
 lsGetSummary = function(lsAPIurl,
                         sessionKey,
-                        surveyID,
-                        action = "all"
+                        surveyID
                         ){
 
     if (missing(lsAPIurl))
@@ -21,19 +20,14 @@ lsGetSummary = function(lsAPIurl,
     if (missing(surveyID))
         stop("Need to specify surveyID.")
 
-    if (!action %in% c("all"))
-        stop("Wrong action parameter. Available are: 'all'.")
 
     # setting parameters for API call
-
-    if (action == "all") {
 
         method = "get_summary"
         params = list(sSessionKey = sessionKey,
                       iSurveyID = surveyID,
-                      sStatName = action)
+                      sStatName = 'all')
 
-    }
 
 
     data = lsAPI(lsAPIurl, method = method, params)
