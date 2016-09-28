@@ -45,7 +45,7 @@ lsGetResponses = function(lsAPIurl,
     # todo: implement from and to ResponseID
 
     if (!completionStatus %in% c("all", "complete", "incomplete"))
-         stop("Wrong completionStatus parameter")
+         stop("Wrong completionStatus parameter. Available are: 'all', 'complete', 'incomplete'.")
 
 
     # setting parameters for API call
