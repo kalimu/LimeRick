@@ -11,7 +11,7 @@ lsGetProperties = function(lsAPIurl,
                            action = "survey",
                            surveyID = NULL,
                            questionID = NULL,
-                           lang = "en"
+                           languageCode = "en"
                            ){
 
     if (missing(lsAPIurl))
@@ -46,7 +46,7 @@ lsGetProperties = function(lsAPIurl,
         params = list(sSessionKey = sessionKey,
                       iQuestionID = questionID,
                       aQuestionSettings = list("available_answers","subquestions","attributes","attributes_lang","answeroptions","defaultvalue", "qid", "parent_qid", "sid", "gid", "type", "question", "preg", "help", "other", "mandatory", "question_order", "language", "scale_id", "same_default", "relevance", "modulename"),
-                      sLanguageCode = lang)
+                      sLanguageCode = languageCode)
 
     }
 

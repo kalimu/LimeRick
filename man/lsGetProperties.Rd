@@ -6,7 +6,7 @@
 todo: documentation}
 \usage{
 lsGetProperties(lsAPIurl, sessionKey, action = "survey", surveyID = NULL,
-  questionID = NULL, lang = "en")
+  questionID = NULL, languageCode = "en")
 }
 \description{
 Function for getting question or survey properties
