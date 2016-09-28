@@ -23,6 +23,10 @@
 # * @return array|string On success: Requested file as base 64-encoded string. On failure array with error information
 # * */
 
+#########################
+#lsGetResponsesAll
+#########################
+
 lsGetResponsesAll = function(lsAPIurl,
                           sessionKey,
                           surveyID,
@@ -50,6 +54,10 @@ lsGetResponsesAll = function(lsAPIurl,
                           )
                           
                           }
+
+#########################
+#lsGetResponsesComplete
+#########################
 
 lsGetResponsesComplete = function(lsAPIurl,
                           sessionKey,
@@ -79,6 +87,10 @@ lsGetResponsesComplete = function(lsAPIurl,
                           
                           }
 
+#########################
+#lsGetResponsesIncomplete
+#########################
+
 lsGetResponsesIncomplete = function(lsAPIurl,
                           sessionKey,
                           surveyID,
@@ -107,6 +119,11 @@ lsGetResponsesIncomplete = function(lsAPIurl,
                           
                           }
 
+
+#########################
+#lsGetResponses
+#private
+#########################
 
 lsGetResponses = function(lsAPIurl,
                           sessionKey,
@@ -166,7 +183,34 @@ lsGetResponses = function(lsAPIurl,
 
 }
 
+#########################
+#lsGetSurveySummary
+#########################
 
+lsGetSurveySummary = function(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'all'
+
+#'token_count', 'token_invalid', 'token_sent', 'token_opted_out', 'token_completed', 'completed_responses', 
+#'incomplete_responses', 'full_responses' or 'all'
+                             ){
+
+    params = list(sSessionKey = sessionKey,
+                  iSurveyID = surveyID,
+                  sStatName = statName
+                  )
+
+    data = lsAPI(lsAPIurl, method = "get_summary", params)
+
+    data = rawToChar(base64enc::base64decode(data))
+
+    data
+}
+
+#########################
+#lsGetQuestionProperties
+#########################
 
 lsGetQuestionProperties = function(sessionKey,
                           questionID,
