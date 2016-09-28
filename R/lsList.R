@@ -8,8 +8,8 @@
 
 lsList = function(lsAPIurl,
                   sessionKey,
-                  surveyID = NULL,
-                  action = "surveys"
+                  action = "surveys",
+                  surveyID = NULL
                   ){
 
     if (missing(lsAPIurl))

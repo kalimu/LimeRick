@@ -5,7 +5,7 @@
 \title{Function for listing surveys, groups or questions
 todo: documentation}
 \usage{
-lsList(lsAPIurl, sessionKey, surveyID = NULL, action = "surveys")
+lsList(lsAPIurl, sessionKey, action = "surveys", surveyID = NULL)
 }
 \description{
 Function for listing surveys, groups or questions
