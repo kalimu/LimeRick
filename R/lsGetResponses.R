@@ -30,7 +30,7 @@
 lsGetResponsesAll = function(lsAPIurl,
                           sessionKey,
                           surveyID,
-                          completionStatus,# = "all",
+                          completionStatus,
                           documentType = "csv",
                           languageCode = "en",
                           headingType = "code",
@@ -138,7 +138,7 @@ lsGetResponses = function(lsAPIurl,
                           fields = NULL
                           ){
 
-    if {missing(completionStatus) {completionStatus="all"}}
+    if (missing(completionStatus)) {completionStatus="all"}
 
     # todo: wokring with other document types (JSON especially; is a bit
     # problematic)
@@ -184,16 +184,166 @@ lsGetResponses = function(lsAPIurl,
 }
 
 #########################
+#lsGetSurveySummaryFullResponses
+#########################
+
+lsGetSurveySummaryFullResponses = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'full_responses'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryIncompleteResponses
+#########################
+
+lsGetSurveySummaryIncompleteResponses = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'incomplete_responses'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryCompletedResponses
+#########################
+
+lsGetSurveySummaryCompletedResponses = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'completed_responses'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryTokenCompleted
+#########################
+
+lsGetSurveySummaryTokenCompleted = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'token_completed'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryTokenOptOut
+#########################
+
+lsGetSurveySummaryTokenOptOut = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'token_opted_out'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryTokenSent
+#########################
+
+lsGetSurveySummaryTokenSent = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'token_sent'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryTokenInvalid
+#########################
+
+lsGetSurveySummaryTokenInvalid = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'token_invalid'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryTokenCount
+#########################
+
+lsGetSurveySummaryTokenCount = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          statName = 'token_count'
+                          )
+  }
+
+#########################
+#lsGetSurveySummaryAll
+#########################
+
+lsGetSurveySummaryAll = function(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+                              
+  {
+                  lsGetSurveySummary(lsAPIurl,
+                          sessionKey,
+                          surveyID
+                          )
+  }
+
+#########################
 #lsGetSurveySummary
+#private
 #########################
 
 lsGetSurveySummary = function(lsAPIurl,
                           sessionKey,
                           surveyID,
                           statName = 'all'
-
-#'token_count', 'token_invalid', 'token_sent', 'token_opted_out', 'token_completed', 'completed_responses', 
-#'incomplete_responses', 'full_responses' or 'all'
                              ){
 
     params = list(sSessionKey = sessionKey,
@@ -205,7 +355,18 @@ lsGetSurveySummary = function(lsAPIurl,
 
     data = rawToChar(base64enc::base64decode(data))
 
+    if (statName=="all") 
+        {
+        df = read.csv(textConnection(data),
+             encoding = "UTF-8",
+             stringsAsFactors = FALSE)
+        df
+        }
+    else
+        {
     data
+        }
+  
 }
 
 #########################
@@ -215,7 +376,7 @@ lsGetSurveySummary = function(lsAPIurl,
 lsGetSurveyProperties = function(lsAPIurl,
                           sessionKey,
                           surveyID,
-                          surveySettings
+                          surveySettings #mandatory option
 
 #settings option not known disclosed by API
                                  
@@ -239,6 +400,7 @@ lsGetSurveyProperties = function(lsAPIurl,
 
 #########################
 #lsGetQuestionProperties
+#beta
 #########################
 
 lsGetQuestionProperties = function(sessionKey,
@@ -254,7 +416,7 @@ lsGetQuestionProperties = function(sessionKey,
                   )
                                   
                                   data2 = lsAPI(lsAPIurl, method = "get_question_properties", params)
-                                  
+ 
                                   #beta - 1D array only  
   
                                       df2 = read.csv(textConnection(data2),
