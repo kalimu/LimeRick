@@ -209,6 +209,35 @@ lsGetSurveySummary = function(lsAPIurl,
 }
 
 #########################
+#lsGetSurveyProperties
+#########################
+
+lsGetSurveyProperties = function(lsAPIurl,
+                          sessionKey,
+                          surveyID,
+                          surveySettings
+
+#settings option not known disclosed by API
+                                 
+                             ){
+
+    params = list(sSessionKey = sessionKey,
+                  iSurveyID = surveyID,
+                  aSurveySettings = surveySettings
+                  )
+
+    data = lsAPI(lsAPIurl, method = "get_survey_properties", params)
+
+    data = rawToChar(base64enc::base64decode(data))
+
+    df = read.csv(textConnection(data),
+             encoding = "UTF-8",
+             stringsAsFactors = FALSE)
+  
+    df
+}
+
+#########################
 #lsGetQuestionProperties
 #########################
 
@@ -227,5 +256,10 @@ lsGetQuestionProperties = function(sessionKey,
                                   data2 = lsAPI(lsAPIurl, method = "get_question_properties", params)
                                   
                                   #beta - 1D array only  
-                                  data2
+  
+                                      df2 = read.csv(textConnection(data2),
+                                        encoding = "UTF-8",
+                                        stringsAsFactors = FALSE)
+  
+                                      df2
                           }
