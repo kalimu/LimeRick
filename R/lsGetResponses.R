@@ -406,7 +406,7 @@ lsGetSurveyProperties = function(lsAPIurl,
 lsGetQuestionProperties = function(sessionKey,
                           questionID,
                           #questionProperty,
-                          languageCode = "en",
+                          languageCode = "en"
                           ){
                           
               params = list(sSessionKey = sessionKey,
