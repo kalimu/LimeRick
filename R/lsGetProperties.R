@@ -11,7 +11,8 @@ lsGetProperties = function(lsAPIurl,
                            action = "survey",
                            surveyID = NULL,
                            questionID = NULL,
-                           languageCode = "en"
+                           languageCode = "en",
+                           usageStats = TRUE
                            ){
 
     if (missing(lsAPIurl))
@@ -52,6 +53,12 @@ lsGetProperties = function(lsAPIurl,
 
 
     data = lsAPI(lsAPIurl, method = method, params)
+
+    # monitoring usage of the function
+    lsAddPackageStats(functionName = "lsGetProperties",
+                      functionStats = action,
+                      usageStats = usageStats
+                      )
 
     data
 

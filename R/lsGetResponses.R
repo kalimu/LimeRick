@@ -33,7 +33,8 @@ lsGetResponses = function(lsAPIurl,
                           responseType = "long",
                           fromResponseID = NULL,
                           toResponseID = NULL,
-                          fields = NULL
+                          fields = NULL,
+                          usageStats = TRUE
                           ){
 
     # todo: wokring with other document types (JSON especially; is a bit
@@ -76,6 +77,14 @@ lsGetResponses = function(lsAPIurl,
     df = read.csv(textConnection(data),
              encoding = "UTF-8",
              stringsAsFactors = FALSE)
+
+    # monitoring usage of the function
+    lsAddPackageStats(functionName = "lsGetResponses",
+                      functionStats = NROW(df),
+                      usageStats = usageStats
+                      )
+
+
 
     # returing data frame
     df

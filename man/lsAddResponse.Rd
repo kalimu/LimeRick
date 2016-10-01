@@ -5,7 +5,7 @@
 \title{Function for adding new responses to the survey
 todo: documentation}
 \usage{
-lsAddResponse(lsAPIurl, sessionKey, surveyID, response)
+lsAddResponse(lsAPIurl, sessionKey, surveyID, response, usageStats = TRUE)
 }
 \description{
 Function for adding new responses to the survey

@@ -8,7 +8,8 @@
 
 lsGetSummary = function(lsAPIurl,
                         sessionKey,
-                        surveyID
+                        surveyID,
+                        usageStats = TRUE
                         ){
 
     if (missing(lsAPIurl))
@@ -31,6 +32,12 @@ lsGetSummary = function(lsAPIurl,
 
 
     data = lsAPI(lsAPIurl, method = method, params)
+
+    # monitoring usage of the function
+    lsAddPackageStats(functionName = "lsGetSummary",
+                      functionStats = "1",
+                      usageStats = usageStats
+                      )
 
     data
 

@@ -9,7 +9,8 @@
 lsList = function(lsAPIurl,
                   sessionKey,
                   action = "surveys",
-                  surveyID = NULL
+                  surveyID = NULL,
+                  usageStats = TRUE
                   ){
 
     if (missing(lsAPIurl))
@@ -42,6 +43,12 @@ lsList = function(lsAPIurl,
     if (action == "questions") { method = "list_questions" }
 
     data = lsAPI(lsAPIurl, method = method, params)
+
+    # monitoring usage of the function
+    lsAddPackageStats(functionName = "lsList",
+                      functionStats = action,
+                      usageStats = usageStats
+                      )
 
     data
 

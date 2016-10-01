@@ -8,7 +8,7 @@ todo: documentation}
 lsGetResponses(lsAPIurl, sessionKey, surveyID, documentType = "csv",
   languageCode = "en", completionStatus = "all", headingType = "code",
   responseType = "long", fromResponseID = NULL, toResponseID = NULL,
-  fields = NULL)
+  fields = NULL, usageStats = TRUE)
 }
 \description{
 Function for getting responses from a survey via LimeSurvey API

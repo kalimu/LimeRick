@@ -5,7 +5,7 @@
 \title{Function for getting survey summary
 todo: documentation}
 \usage{
-lsGetSummary(lsAPIurl, sessionKey, surveyID)
+lsGetSummary(lsAPIurl, sessionKey, surveyID, usageStats = TRUE)
 }
 \description{
 Function for getting survey summary

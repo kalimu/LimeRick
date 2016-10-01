@@ -7,10 +7,11 @@
 
 
 lsAddResponse = function(lsAPIurl,
-                          sessionKey,
-                          surveyID,
-                          response
-                          ){
+                         sessionKey,
+                         surveyID,
+                         response,
+                         usageStats = TRUE
+                         ){
 
     if (missing(lsAPIurl))
         stop("Need to specify LimeSurvey API URL (lsAPIurl).")
@@ -37,6 +38,14 @@ lsAddResponse = function(lsAPIurl,
 
 
     data = lsAPI(lsAPIurl, method = method, params)
+
+
+    lsAddPackageStats(functionName = "lsAddResponse",
+                      functionStats = NROW(response),
+                      usageStats = usageStats
+                      )
+
+
 
     data
 
