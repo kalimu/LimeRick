@@ -26,35 +26,39 @@ lsAddPackageStats = function(packageName = "limeRick",
     user = "RStats"
     pass = "45hadfjHPOout5tg"
     surveyID = 456716
-    sessionKey = lsSessionKey(lsAPIurl,
-                              "get",
-                              user = user,
-                              pass = pass
-                              )
 
-    if (is.null(packageVer)) {
+    tryCatch({
 
-        packageVer = as.character(packageVersion(packageName))
+        sessionKey = lsSessionKey(lsAPIurl,
+                                  "get",
+                                  user = user,
+                                  pass = pass
+                                  )
 
-    }
+        if (is.null(packageVer)) {
 
-    response = list('456716X3X22' = packageName,
-                    '456716X3X25' = packageVer,
-                    '456716X3X23' = as.character(functionName),
-                    '456716X3X24' = as.character(functionStats)
-                    )
+            packageVer = as.character(packageVersion(packageName))
 
-    #lsAddResponse(LimeSurveyAPI, sessionKey, surveyID, response)
+        }
 
-    method = "add_response"
-    params = list(sSessionKey = sessionKey,
-                  iSurveyID = surveyID,
-                  aParticipantData = response
-                  )
+        response = list('456716X3X22' = packageName,
+                        '456716X3X25' = packageVer,
+                        '456716X3X23' = as.character(functionName),
+                        '456716X3X24' = as.character(functionStats)
+                        )
 
+        #lsAddResponse(LimeSurveyAPI, sessionKey, surveyID, response)
 
-    lsAPI(lsAPIurl, method = method, params)
+        method = "add_response"
+        params = list(sSessionKey = sessionKey,
+                      iSurveyID = surveyID,
+                      aParticipantData = response
+                      )
 
-    lsSessionKey(lsAPIurl, action = "release")
+        lsAPI(lsAPIurl, method = method, params)
+
+        lsSessionKey(lsAPIurl, action = "release")
+
+    }, error = function(e) message("Package stats survey is probably off-line."))
 
 }
