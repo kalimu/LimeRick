@@ -5,7 +5,8 @@
 #beta
 #########################
 
-lsGetQuestionProperties = function(sessionKey,
+lsGetQuestionProperties = function(lsAPIurl,
+                          sessionKey,
                           questionID,
                           #questionProperty,
                           languageCode = "en"
