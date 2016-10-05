@@ -12,6 +12,7 @@ lsGetSurveySummaryAll = function(lsAPIurl,
   {
                   lsGetSurveySummary(lsAPIurl,
                           sessionKey,
-                          surveyID
+                          surveyID,
+                          statName = 'all'
                           )
   }
