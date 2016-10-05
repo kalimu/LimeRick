@@ -14,7 +14,7 @@ lsGetQuestionProperties = function(sessionKey,
               params = list(sSessionKey = sessionKey,
                   iQuestionID = questionID,
                   aQuestionSettings = c("available_answers","subquestions","attributes","attributes_lang","answeroptions","defaultvalue"),
-                  sLanguageCode = languageCode,
+                  sLanguageCode = languageCode
                   )
                                   
                                   data2 = lsAPI(lsAPIurl, method = "get_question_properties", params)
