@@ -7,7 +7,6 @@
 lsGetResponsesIncomplete = function(lsAPIurl,
                           sessionKey,
                           surveyID,
-                          completionStatus,# = "all",
                           documentType = "csv",
                           languageCode = "en",
                           headingType = "code",
