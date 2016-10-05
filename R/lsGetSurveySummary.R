@@ -8,7 +8,7 @@
 lsGetSurveySummary = function(lsAPIurl,
                           sessionKey,
                           surveyID,
-                          statName = 'all'
+                          statName # = 'all'
                              ){
 
     params = list(sSessionKey = sessionKey,
