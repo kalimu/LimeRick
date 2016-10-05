@@ -7,7 +7,6 @@
 lsGetResponsesAll = function(lsAPIurl,
                           sessionKey,
                           surveyID,
-                          completionStatus,
                           documentType = "csv",
                           languageCode = "en",
                           headingType = "code",
