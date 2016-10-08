@@ -1,10 +1,24 @@
 Package: LimeRick
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Bridge between R and LimeSurvey
 Version: 0.0.0.9000
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-LazyData: TRUE
+Date: 2016-10-08
+Author@R: c(person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
+    c("aut", "cre")), person("Andrew", "Heiss", role = "ctb"), person("Michał", "Pietal", role = "ctb"), person("Jarosław", "Szkoła", role = "ctb"))
+Description: Enables close connection between R and LimeSurvey - one of the most
+    advanced open-source scripts for Computer-Aided Web Interviewing.
+    Using new RemoteControl2 API for two-way data exchange allows for
+    importing on-line survey responses into R,
+    adding new responses to the survey directly from R,
+    listing surveys and question properties,
+    implementing passive measurment surveys,
+    developing data products based on real-time decarative data collection.
+License: MIT + file LICENSE
+URL: https://github.com/kalimu/LimeRick,
+    http://www.wais.kamil.rzeszow.pl/LimeRick
+BugReports: https://github.com/kalimu/genderizeR
+Depends:
+    R (>= 3.3.1)
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 5.0.1
