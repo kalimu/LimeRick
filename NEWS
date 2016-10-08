@@ -1,4 +1,4 @@
-LimeRick 0.0.0.9000
+LimeRick 0.0.1 beta
 ====================
 
 * adding two experimental functions allowing passive measurements and monitoring usage of the package (lsAddPackageStats(), lsGetPackageStats())
