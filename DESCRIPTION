@@ -10,9 +10,9 @@ Description: Enables close connection between R and LimeSurvey - one of the most
     Using new RemoteControl2 API for two-way data exchange allows for
     importing on-line survey responses into R,
     adding new responses to the survey directly from R,
-    listing surveys and question properties,
-    implementing passive measurement  rment surveys,
-    developing data products based on real-time declarative data collection.
+    automatically accessing surveys and question properties,
+    implementing passive measurement surveys,
+    developing data products based on real-time declarative data collection, and more.
 License: MIT + file LICENSE
 URL: https://github.com/kalimu/LimeRick,
     http://www.wais.kamil.rzeszow.pl/LimeRick
