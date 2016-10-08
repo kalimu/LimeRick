@@ -1,6 +1,13 @@
-LimeRick 0.0.0.9001
+LimeRick 0.0.0.9000
 ====================
 
-* function lsSessionKey for getting and releasing LimeSurvey session key
-* error handling in API calls
-* low-level funciton for LimeSurvey API calls (lsAPI)
+* adding two experimental functions allowing passive measurements and monitoring usage of the package (lsAddPackageStats(), lsGetPackageStats())
+* adding low- and high-level functions for adding responses directly from R (lsAddResponse(), lsAddFeedback())
+* lsGetResponses() for importing into R survey responses directly from LimeSurvey
+* lsGetSummary() for summarize responses for a survey (complete, incomplete, all)
+* lsGetAnswerOption() for listing options available for a given answer
+* lsGetProperties() for getting properties of a survey or a question
+* lsList() for listing surveys, groups, and questions
+* lsSessionCache environment for storing session keys
+* lsSessionKey() function for obtaining and releasing LimeSurvey session key
+* lsAPI() low-level function for LimeSurvey Remote Control API calls end error handling
