@@ -11,8 +11,8 @@ Description: Enables close connection between R and LimeSurvey - one of the most
     importing on-line survey responses into R,
     adding new responses to the survey directly from R,
     listing surveys and question properties,
-    implementing passive measurment surveys,
-    developing data products based on real-time decarative data collection.
+    implementing passive measurement  rment surveys,
+    developing data products based on real-time declarative data collection.
 License: MIT + file LICENSE
 URL: https://github.com/kalimu/LimeRick,
     http://www.wais.kamil.rzeszow.pl/LimeRick
