@@ -22,7 +22,18 @@
 
 #' Bridge between LimeSurvey and R
 #'
-#' The \code{LimeRick} package ...todo...
+#' The \code{LimeRick} package enables close connection between R and LimeSurvey – one of the most open-source scripts for Computer-Aided Web Interviewing. Using new LimeSurvey RemoteControl2 API for two-way data exchange allows for:
+#' \itemize{
+#'   \item importing on-line survey responses into R,
+#'   \item adding new responses to the survey directly from R,
+#'   \item automatically accessing surveys and question properties,
+#'   \item implementing passive measurement surveys,
+#'   \item developing data products based on real-time declarative data collection.
+#' }
+#'
+#' The lsSessionCache environment is crated upon the package loading
+#' and stores session data like session key or timestamp when the session started.
+#' The environment is accessed directly only by package functions not by a package user.
 #'
 #' If you need help with your research or commercial projects,
 #' feel free to contat me via my homepage contact form:
@@ -40,8 +51,8 @@
 
 #' @seealso
 #' \itemize{
-#   \item \url{http://www.wais.kamil.rzeszow.pl/LimeRick} [R package homepage]
-#'   \item \url{https://github.com/kalimu/LimeRick} [source code of the latest development version of the R package]
+#'   \item \url{http://www.wais.kamil.rzeszow.pl/LimeRick} [the package homepage]
+#'   \item \url{https://github.com/kalimu/LimeRick} [source code & development version of the package]
 #'   \item \url{http://limesurvey.org} [LimeSurvey homepage]
 #' }
 #'
