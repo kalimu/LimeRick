@@ -21,7 +21,9 @@ URL: https://github.com/kalimu/LimeRick,
     http://www.wais.kamil.rzeszow.pl/LimeRick
 BugReports: https://github.com/kalimu/genderizeR
 Imports:
-    httr (>= 1.2.1)
+    httr (>= 1.2.1),
+    base64enc,
+    jsonlite
 Depends:
     R (>= 3.3.1)
 Encoding: UTF-8
