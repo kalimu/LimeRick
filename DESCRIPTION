@@ -1,7 +1,7 @@
 Package: LimeRick
 Type: Package
 Title: Bridge between R and LimeSurvey
-Version: 0.0.1
+Version: 0.0.1.9000
 Date: 2016-10-08
 Authors@R: c(person(given = "Kamil", family = "Wais", email = "kamil.wais@gmail.com",
     role = c("aut", "cre")),
@@ -20,6 +20,8 @@ License: MIT + file LICENSE
 URL: https://github.com/kalimu/LimeRick,
     http://www.wais.kamil.rzeszow.pl/LimeRick
 BugReports: https://github.com/kalimu/genderizeR
+Imports:
+    httr (>= 1.2.1)
 Depends:
     R (>= 3.3.1)
 Encoding: UTF-8
