@@ -5,13 +5,14 @@
 
     packageStartupMessage(paste0('\nWelcome to LimeRick package version: ',
                                  utils::packageVersion("LimeRick")))
-    #packageStartupMessage("\nHomepage: http://www.wais.kamil.rzeszow.pl/LimeRick")
 
-    #packageStartupMessage("\nChangelog: news(package = 'LimeRick')")
-    #packageStartupMessage("Help & Contact: help(LimeRick)")
+    packageStartupMessage("\nHomepage: http://www.wais.kamil.rzeszow.pl/LimeRick")
 
-    #packageStartupMessage("\nIf you find this package useful cite it please. Thank you! ")
-    #packageStartupMessage("See: citation('LimeRick')")
+    packageStartupMessage("\nChangelog: news(package = 'LimeRick')")
+    packageStartupMessage("Package help: help(LimeRick)")
+
+    packageStartupMessage("\nIf you find this package useful cite it please. Thank you! ")
+    packageStartupMessage("See: citation('LimeRick')")
 
     packageStartupMessage("\nTo suppress this message use:\nsuppressPackageStartupMessages(library(LimeRick))")
 

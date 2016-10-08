@@ -3,8 +3,11 @@ Type: Package
 Title: Bridge between R and LimeSurvey
 Version: 0.0.0.9000
 Date: 2016-10-08
-Author@R: c(person("Kamil", "Wais", email = "kamil.wais@gmail.com", role =
-    c("aut", "cre")), person("Andrew", "Heiss", role = "ctb"), person("Michał", "Pietal", role = "ctb"), person("Jarosław", "Szkoła", role = "ctb"))
+Authors@R: c(person(given = "Kamil", family = "Wais", email = "kamil.wais@gmail.com",
+    role = c("aut", "cre")),
+    person("Andrew", "Heiss", role = "ctb"),
+    person("Michał", "Pietal", role = "ctb"),
+    person("Jarosław", "Szkoła", role = "ctb"))
 Description: Enables close connection between R and LimeSurvey - one of the most
     advanced open-source scripts for Computer-Aided Web Interviewing.
     Using new RemoteControl2 API for two-way data exchange allows for
