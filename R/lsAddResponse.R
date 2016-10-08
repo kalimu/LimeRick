@@ -6,18 +6,20 @@
 
 
 
-lsAddResponse = function(lsAPIurl,
-                         sessionKey,
-                         surveyID,
+lsAddResponse = function(surveyID,
                          response,
-                         usageStats = TRUE
+                         lsAPIurl = getOption("lsAPIurl"),
+                         sessionKey = NULL,
+                         usageStats = getOption("LimeRickStats")
                          ){
 
-    if (missing(lsAPIurl))
-        stop("Need to specify LimeSurvey API URL (lsAPIurl).")
+    if (is.null(lsAPIurl))
+         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
 
-    if (missing(sessionKey))
-        stop("Need to specify session key (sessionKey). Use lsSessionKey function.")
+    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
+
+    if (is.null(sessionKey))
+        stop("Need to have a session key. Use lsSessionKey('get') function.")
 
     if (missing(surveyID))
         stop("Need to specify surveyID.")
@@ -37,7 +39,9 @@ lsAddResponse = function(lsAPIurl,
                   )
 
 
-    data = lsAPI(lsAPIurl, method = method, params)
+    data = lsAPI(method = method,
+                 params = params,
+                 lsAPIurl = lsAPIurl)
 
 
     lsAddPackageStats(functionName = "lsAddResponse",

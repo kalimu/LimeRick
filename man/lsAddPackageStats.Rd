@@ -5,8 +5,8 @@
 \title{Function for adding new stats of using package functions
 todo: documentation}
 \usage{
-lsAddPackageStats(packageName = "limeRick", packageVer = NULL, functionName,
-  functionStats, usageStats = TRUE)
+lsAddPackageStats(packageName = "LimeRick", packageVer = NULL, functionName,
+  functionStats, usageStats = getOption("LimeRickStats"))
 }
 \description{
 Function for adding new stats of using package functions

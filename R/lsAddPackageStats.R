@@ -6,14 +6,14 @@
 
 
 
-lsAddPackageStats = function(packageName = "limeRick",
+lsAddPackageStats = function(packageName = "LimeRick",
                              packageVer = NULL,
                              functionName,
                              functionStats,
-                             usageStats = TRUE
+                             usageStats = getOption("LimeRickStats")
                              ){
 
-    if (usageStats == FALSE) {
+    if (!is.null(usageStats) && usageStats == FALSE) {
 
         message('Sending usage statistics for function ',
                 functionName, ' is disabled.\n')
@@ -29,11 +29,27 @@ lsAddPackageStats = function(packageName = "limeRick",
 
     tryCatch({
 
-        sessionKey = lsSessionKey(lsAPIurl,
-                                  "get",
-                                  user = user,
-                                  pass = pass
-                                  )
+        if (is.null(lsSessionCache$statSessionStart) ||
+            as.numeric(Sys.time() - lsSessionCache$statSessionStart) > (60 * 10)
+            ) {
+
+            sessionKey = lsSessionKey(action = "get",
+                                      lsAPIurl = lsAPIurl,
+                                      user = user,
+                                      pass = pass,
+                                      verbose = FALSE,
+                                      sessionType = "stats"
+                                      )
+
+            #cat('A new statSessionKey was obtained.\n\n')
+
+        } else {
+
+            sessionKey = lsSessionCache$statSessionKey
+
+        }
+
+
 
         if (is.null(packageVer)) {
 
@@ -47,17 +63,15 @@ lsAddPackageStats = function(packageName = "limeRick",
                         '456716X3X24' = as.character(functionStats)
                         )
 
-        #lsAddResponse(LimeSurveyAPI, sessionKey, surveyID, response)
-
         method = "add_response"
         params = list(sSessionKey = sessionKey,
                       iSurveyID = surveyID,
                       aParticipantData = response
                       )
 
-        lsAPI(lsAPIurl, method = method, params)
+        lsAPI(method = method, params = params, lsAPIurl = lsAPIurl)
 
-        lsSessionKey(lsAPIurl, action = "release")
+        #lsSessionKey(action = "release", lsAPIurl = lsAPIurl, verbose = FALSE)
 
     }, error = function(e) message("Package stats survey is probably off-line."))
 

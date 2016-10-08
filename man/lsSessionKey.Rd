@@ -5,7 +5,9 @@
 \title{Function getting and releasing LimeSurvey API session key
 todo: documentation}
 \usage{
-lsSessionKey(lsAPIurl, action = "release", user = NULL, pass = NULL)
+lsSessionKey(action = "set", lsAPIurl = getOption("lsAPIurl"),
+  user = getOption("lsUser"), pass = getOption("lsPass"), verbose = TRUE,
+  sessionType = "global")
 }
 \description{
 Function getting and releasing LimeSurvey API session key

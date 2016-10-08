@@ -5,15 +5,22 @@
 
 # todo: there may also be in the future a function for connecting with LS without API
 
-lsAPI = function(lsAPIurl,
-                 method,
-                 params = NULL
+lsAPI = function(method,
+                 params = NULL,
+                 lsAPIurl = getOption("lsAPIurl")
                  ){
 
-    if (missing(lsAPIurl))
+    if (is.null(lsAPIurl))
         stop("Need to specify LimeSurvey API URL (lsAPIurl).")
+
     if (missing(method))
         stop("Need to specify method function for the LimeSurvey API.")
+
+    if (is.null(params)) {
+
+        params = list(sSessionKey = lsSessionCache$sessionKey )
+
+    }
 
     # preparing the body of the API call in JSON format
     bodyJSON = list(method = method,
@@ -31,23 +38,23 @@ lsAPI = function(lsAPIurl,
     #                          )
     # RETRY() function allows you to retry a request multiple times
     # until it succeeds, if you you are trying to talk to an unreliable service
-
     apiResponse = httr::RETRY("POST", lsAPIurl,
-                httr::content_type_json(),
-                body = bodyJSON
-                )
+                              httr::content_type_json(),
+                              body = bodyJSON
+                              )
 
 
     # checking status code;
     # suprisingly API returns code 200 event if something is not ok (wrong password)
     if (httr::status_code(apiResponse) == 200) {
 
+        # cat('Status code is 200.\n')
+        content = httr::content(apiResponse, encoding = "UTF-8")
 
-        apiResult = jsonlite::fromJSON(httr::content(apiResponse,
-                                       encoding = "UTF-8"))$result
+        if (!is.character(content) && is.null(content$result))
+            stop('Server is responding but not in a proper way. Please check the API URL.')
 
-        # print(apiResult)
-        # print(class(apiResult))
+        apiResult = jsonlite::fromJSON(content)$result
 
         # we need also check the response status
         if (class(apiResult) == 'list' && !is.null(apiResult$status)) {
@@ -58,18 +65,17 @@ lsAPI = function(lsAPIurl,
         } else {
 
             # print(httr::headers(apiResponse))
-
-
             apiResult
 
         }
 
     } else {
 
-        cat('\n', httr::http_status(apiResponse)$message)
+        cat('Status code is not 200! \n')
+        stop(httr::http_status(apiResponse)$message)
         #cat('\n', httr::content(apiResult)$error)
 
-        return
+
 
     }
 

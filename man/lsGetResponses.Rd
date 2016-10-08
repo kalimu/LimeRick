@@ -5,10 +5,11 @@
 \title{Function for getting responses from a survey via LimeSurvey API
 todo: documentation}
 \usage{
-lsGetResponses(lsAPIurl, sessionKey, surveyID, documentType = "csv",
-  languageCode = "en", completionStatus = "all", headingType = "code",
-  responseType = "long", fromResponseID = NULL, toResponseID = NULL,
-  fields = NULL, usageStats = TRUE)
+lsGetResponses(surveyID, documentType = "csv", languageCode = "en",
+  completionStatus = "all", headingType = "code", responseType = "long",
+  fromResponseID = NULL, toResponseID = NULL, fields = NULL,
+  lsAPIurl = getOption("lsAPIurl"), sessionKey = NULL,
+  usageStats = getOption("LimeRickStats"))
 }
 \description{
 Function for getting responses from a survey via LimeSurvey API

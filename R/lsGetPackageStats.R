@@ -6,25 +6,28 @@
 
 
 
-lsGetPackageStats = function(packageName = "limeRick",
-                             usageStats = TRUE){
+lsGetPackageStats = function(packageName = "LimeRick",
+                             usageStats = getOption("LimeRickStats")
+                             ){
 
     lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol'
     user = "RStats"
     pass = "45hadfjHPOout5tg"
     surveyID = 456716
-    sessionKey = lsSessionKey(lsAPIurl,
-                              "get",
+    sessionKey = lsSessionKey("get",
+                              lsAPIurl = lsAPIurl,
                               user = user,
-                              pass = pass
+                              pass = pass,
+                              verbose = FALSE,
+                              sessionType = 'other'
                               )
 
-    data = lsGetResponses(lsAPIurl,
-                          sessionKey,
-                          surveyID,
+    data = lsGetResponses(surveyID,
+                          lsAPIurl = lsAPIurl,
+                          sessionKey = sessionKey,
                           usageStats = usageStats)
 
-    lsSessionKey(lsAPIurl, action = "release")
+    lsSessionKey(lsAPIurl, action = "release", verbose = FALSE)
 
     data[, names(data) %in% c("id", "submitdate", "startlanguage",
                               "packageName", "packageVer",

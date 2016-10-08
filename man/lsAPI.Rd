@@ -5,7 +5,7 @@
 \title{Function directly calling the LimeSurvey API
 todo: documentation}
 \usage{
-lsAPI(lsAPIurl, method, params = NULL)
+lsAPI(method, params = NULL, lsAPIurl = getOption("lsAPIurl"))
 }
 \description{
 Function directly calling the LimeSurvey API

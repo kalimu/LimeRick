@@ -6,27 +6,30 @@
 
 
 
-lsList = function(lsAPIurl,
-                  sessionKey,
-                  action = "surveys",
+lsList = function(action = "surveys",
                   surveyID = NULL,
-                  usageStats = TRUE
+                  lsAPIurl = getOption("lsAPIurl"),
+                  sessionKey = NULL,
+                  usageStats = getOption("LimeRickStats")
                   ){
 
-    if (missing(lsAPIurl))
-        stop("Need to specify LimeSurvey API URL (lsAPIurl).")
-    if (missing(sessionKey))
-        stop("Need to specify session key (sessionKey). Use lsSessionKey function.")
+    if (is.null(lsAPIurl))
+         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
+
+    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
+
+    if (is.null(sessionKey))
+        stop("Need to have a session key. Use lsSessionKey('get') function.")
 
     if (!action %in% c("surveys", "groups", "questions"))
         stop("Wrong action parameter. Available are: 'surveys', 'groups', 'questions'.")
 
     # setting parameters for API call
-
     if (action == "surveys") {
 
-        params = list(sSessionKey = sessionKey)
+     #   params = list(sSessionKey = sessionKey)
         method = "list_surveys"
+        params = NULL
 
     } else {
 
@@ -42,7 +45,9 @@ lsList = function(lsAPIurl,
 
     if (action == "questions") { method = "list_questions" }
 
-    data = lsAPI(lsAPIurl, method = method, params)
+    data = lsAPI(method = method,
+                 params = params,
+                 lsAPIurl = lsAPIurl)
 
     # monitoring usage of the function
     lsAddPackageStats(functionName = "lsList",
@@ -50,6 +55,6 @@ lsList = function(lsAPIurl,
                       usageStats = usageStats
                       )
 
-    data
+     data
 
 }

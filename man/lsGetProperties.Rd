@@ -5,8 +5,9 @@
 \title{Function for getting question or survey properties
 todo: documentation}
 \usage{
-lsGetProperties(lsAPIurl, sessionKey, action = "survey", surveyID = NULL,
-  questionID = NULL, languageCode = "en", usageStats = TRUE)
+lsGetProperties(action = "survey", surveyID = NULL, questionID = NULL,
+  languageCode = "en", lsAPIurl = getOption("lsAPIurl"),
+  sessionKey = NULL, usageStats = getOption("LimeRickStats"))
 }
 \description{
 Function for getting question or survey properties

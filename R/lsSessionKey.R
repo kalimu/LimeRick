@@ -5,35 +5,63 @@
 #'
 
 
-# there are many solutions for setting user&password like those in limer repo and
-# http://blog.revolutionanalytics.com/2015/11/how-to-store-and-use-authentication-details-with-r.html
-# I am not sure if they are necessary
-# setting passwords directly in the script should be allowed if for the user
-# has been set privileges in LS
-# Anyhow he will be allowed to do whatever he can with survey via API and without them the code will not be reproducible
-# but the API user must be set as a special user with limited privileges not a superadministrator (!)
 
 
-lsSessionKey = function(lsAPIurl,
-                        action = "release",
-                        user = NULL,
-                        pass = NULL
+lsSessionKey = function(action = "set",
+                        lsAPIurl = getOption("lsAPIurl"),
+                        user = getOption("lsUser"),
+                        pass = getOption("lsPass"),
+                        verbose = TRUE,
+                        sessionType = "global"
                         ){
+
+    if (verbose == TRUE)
+        cat('Connecting to:', lsAPIurl, '\n')
 
     if (action == "release") {
 
-        lsAPI(lsAPIurl, method = "release_session_key")
+        if (verbose == TRUE)
+            cat('Releasing session key...\n')
 
-    } else if (action == "get") {
+        response = lsAPI(method = "release_session_key",
+                         lsAPIurl = lsAPIurl)
+
+        lsSessionCache$sessionKey = NULL
+
+        return(response)
+
+    } else if (action %in% c("get", "set", "obtain")) {
 
         params = list(admin = user, password = pass)
 
-        lsAPI(lsAPIurl, method = "get_session_key", params)
+        if (verbose == TRUE)
+            cat('Obtaining session key...\n')
+
+        key = lsAPI(method = "get_session_key", params, lsAPIurl = lsAPIurl)
+
+        if (sessionType == "global") {
+
+            assign("sessionKey", key, envir = lsSessionCache)
+            assign("sessionStart", Sys.time(), envir = lsSessionCache)
+
+            return(get("sessionKey", envir = lsSessionCache))
+
+        } else if (sessionType == "stats") {
+
+            assign("statSessionKey", key, envir = lsSessionCache)
+            assign("statSessionStart", Sys.time(), envir = lsSessionCache)
+
+            return(get("statSessionKey", envir = lsSessionCache))
+
+        } else {
+
+            return(key)
+
+        }
+
 
     }
 
-
-
-
-
 }
+
+

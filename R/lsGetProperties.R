@@ -6,26 +6,28 @@
 
 
 
-lsGetProperties = function(lsAPIurl,
-                           sessionKey,
-                           action = "survey",
+lsGetProperties = function(action = "survey",
                            surveyID = NULL,
                            questionID = NULL,
                            languageCode = "en",
-                           usageStats = TRUE
+                           lsAPIurl = getOption("lsAPIurl"),
+                           sessionKey = NULL,
+                           usageStats = getOption("LimeRickStats")
                            ){
 
-    if (missing(lsAPIurl))
-        stop("Need to specify LimeSurvey API URL (lsAPIurl).")
 
-    if (missing(sessionKey))
-        stop("Need to specify session key (sessionKey). Use lsSessionKey function.")
+    if (is.null(lsAPIurl))
+         stop("Need to specify LimeSurvey API URL (lsAPIurl). \nYou can do it once by options(lsAPIurl = 'your_api_url').")
+
+    if (is.null(sessionKey)) { sessionKey = lsSessionCache$sessionKey }
+
+    if (is.null(sessionKey))
+        stop("Need to have a session key. Use lsSessionKey('get') function.")
 
     if (!action %in% c("survey", "question"))
         stop("Wrong action parameter. Available are: 'survey', 'question'.")
 
     # setting parameters for API call
-
     if (action == "survey") {
 
         if (is.null(surveyID))
@@ -45,14 +47,16 @@ lsGetProperties = function(lsAPIurl,
 
         method = "get_question_properties"
         params = list(sSessionKey = sessionKey,
-                      iQuestionID = questionID,
+                      iQuestionID = as.character(questionID),
                       aQuestionSettings = list("available_answers","subquestions","attributes","attributes_lang","answeroptions","defaultvalue", "qid", "parent_qid", "sid", "gid", "type", "question", "preg", "help", "other", "mandatory", "question_order", "language", "scale_id", "same_default", "relevance", "modulename"),
                       sLanguageCode = languageCode)
 
     }
 
 
-    data = lsAPI(lsAPIurl, method = method, params)
+    data = lsAPI(method = method,
+                 params = params,
+                 lsAPIurl = lsAPIurl)
 
     # monitoring usage of the function
     lsAddPackageStats(functionName = "lsGetProperties",
