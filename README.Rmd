@@ -1,6 +1,10 @@
 ---
 output: github_document
 ---
+ 
+
+
+
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -12,16 +16,172 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+```{r, echo = FALSE}
+# devtools::install_github("rmhogervorst/badgecreatr")
+# badgecreatr::badgeplacer(status = "wip" , githubaccount = "kalimu",githubrepo = "LimeRick")
+#[![minimal R version](https://img.shields.io/badge/R>=-3.3.1-6666ff.svg)](https://cran.r-project.org/)
+```
+
  
 LimeRick
 ==========
 
-### Installing developer version from GitHub
+[![Project Status: active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/LimeRick)](https://cran.r-project.org/package=LimeRick)
+ [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/LimeRick?)](https://github.com/metacran/cranlogs.app)
 
-Remember to install `devtools` package first!
+<strong>Bridge between R and LimeSurvey</strong>  
+by Kamil Wais, Ph. D. ([homepage / contact](http://www.wais.kamil.rzeszow.pl))
+ 
+ 
+The package homepage:
+[http://www.wais.kamil.rzeszow.pl/LimeRick/](http://www.wais.kamil.rzeszow.pl/LimeRick/)
+
+The LimeSurvey homepage:
+[http://limesurvey.org](http://limesurvey.org)
+
+
+## LimeRick: motivation 
+
+* need for a bridge that <span style="font-weight: bold">connects very closely</span> two important open-sorce projects (R&nbsp;and&nbsp;LimeSurvey)
+* need for an <span style="font-weight: bold">advanced tool</span> that allow for:
+    * <span style="font-weight: bold">quickly importing</span> responses into R from active on-line surveys
+    * <span style="font-weight: bold">automatically accessing</span> properties of survey and questions 
+    * <span style="font-weight: bold">montoring</span> survey status and responses directly from R
+    * <span style="font-weight: bold">adding new responses</span> to a survey directly from R
+    * <span style="font-weight: bold">simplifying workflow</span> for reproducible analysis<br> (by providing in advance structured data schema)
+    * developing <span style="font-weight: bold">data products</span> based on <span style="font-weight: bold">real-time</span> declarative data collection<br> (ex. continous on-line tracking studies)
+    * collecting meta-data of respondents interactions with on-line surveys <br>on <span style="font-weight: bold">unique low-granular level</span>
+
+
+## LimeRick: tutorial
+
+### Installing developer version from GitHub
 
 ```{r, echo=TRUE, eval=FALSE, cache=FALSE}
 # install.packages('devtools')
 devtools::install_github("kalimu/LimeRick")
 ```
+
+### Loading the installed package
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+library(LimeRick)
+```
+
+### Configuring access to a survey
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# set link to the LimeSurvey API on the demo remote server
+options(lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol')
+
+# set LimeSurvey user login data for survey testing purposes
+options(lsUser = "LimeRickDemo")
+options(lsPass = "LimeRickDemo")
+```
+
+### Low-level API function calls vs. function wrappers
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# low-level API call
+lsAPI(method = "release_session_key")
+
+# API call using a wrapper function
+lsSessionKey("release")
+```
+
+### Setting a connection to a survey
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# getting session key for the user and saving it inside a special environment
+lsSessionKey("set")
+
+# if you work with specific local set it now
+Sys.setlocale("LC_ALL", "Polish")
+```
+
+
+### Listing available surveys
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# listing available surveys
+(surveyList = lsList("surveys"))
+
+# extracting ID of demo survey
+surveyID = surveyList$sid[1] 
+```
+
+### Adding responses via on-line survey questionaire
+
+```{r, echo=TRUE, eval=FALSE, cache=FALSE}
+# try submit your own answers to the demo survey
+browseURL(paste0("http://odgar.net/survey/index.php/survey/index/sid/", surveyID))
+```
+or use this link: http://odgar.net/survey/index.php/survey/index/sid/683736
+
+### Listing survey questions
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+questionList = lsList("questions", surveyID)
+```
+
+### Accessing survey or question properites
+
+We can access 22 question properties and 58 survey properties. For example:
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# Is the survey active? (Y - Yes)
+lsGetProperties('survey', surveyID)$active
+
+# What is the main text of a given question?
+lsGetProperties('question', surveyID, 16)$question
+
+# Is the question mandatory? (Y - Yes)
+lsGetProperties('question', surveyID, 16)$mandatory
+```
+
+### Checking survey response
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+lsGetSummary(surveyID)
+```
+
+### Importing responses into R
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+d = lsGetResponses(surveyID, completionStatus = 'complete')
+tail(d)
+```
+
+### Adding responses via R
+
+```{r, echo=TRUE, eval=TRUE, cache=FALSE}
+# showing possible options for a particular question
+lsGetAnswerOptions(surveyID, questionID = 16)
+
+# specifying a response with the use of question code: surveIDXgroupIDXquestionID
+response = list('683736X2X27' = "LimeRick",
+                '683736X2X26' = "Adding feedback directly from R",
+                '683736X2X16' = "A2",# Academia
+                '683736X2X21' = "174" # Poland
+                )
+
+# adding the above response 
+lsAddResponse(surveyID, response)
+
+# or adding via wrapper function
+lsAddFeedback(feedback = "Good job! (Kamil, Poland)", 
+              sector = "academia", 
+              country = "Poland")
+```
+
+## See also:
+
+* LimeSurvey Project Team / Carsten Schmitz (2015). / LimeSurvey: An Open Source survey tool /LimeSurvey Project Hamburg, Germany. URL http://www.limesurvey.org
+
+
+
+
+
+
 
