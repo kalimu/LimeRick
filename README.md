@@ -42,6 +42,14 @@ library(LimeRick)
 #> 
 #> Welcome to LimeRick package version: 0.0.0.9000
 #> 
+#> Homepage: http://www.wais.kamil.rzeszow.pl/LimeRick
+#> 
+#> Changelog: news(package = 'LimeRick')
+#> Package help: help(LimeRick)
+#> 
+#> If you find this package useful cite it please. Thank you!
+#> See: citation('LimeRick')
+#> 
 #> To suppress this message use:
 #> suppressPackageStartupMessages(library(LimeRick))
 #> 
@@ -81,7 +89,7 @@ lsSessionKey("release")
 lsSessionKey("set")
 #> Connecting to: http://odgar.net/survey/index.php/admin/remotecontrol 
 #> Obtaining session key...
-#> [1] "gdqjuhiejnsaatp5xsu8v232gcymbpq5"
+#> [1] "dyivssahs2thq8ccxp6vj7py2yfkva4x"
 
 # if you work with specific local set it now
 Sys.setlocale("LC_ALL", "Polish")
@@ -138,13 +146,13 @@ lsGetProperties('question', surveyID, 16)$mandatory
 ``` r
 lsGetSummary(surveyID)
 #> $completed_responses
-#> [1] "498"
+#> [1] "500"
 #> 
 #> $incomplete_responses
 #> [1] "3"
 #> 
 #> $full_responses
-#> [1] "501"
+#> [1] "503"
 ```
 
 ### Importing responses into R
@@ -153,26 +161,26 @@ lsGetSummary(surveyID)
 d = lsGetResponses(surveyID, completionStatus = 'complete')
 tail(d)
 #>      id          submitdate lastpage startlanguage           startdate
-#> 493 526 2016-10-08 04:43:42       NA            en 2016-10-08 04:43:42
-#> 494 527 2016-10-08 04:43:43       NA            en 2016-10-08 04:43:43
 #> 495 528 2016-10-08 04:50:07       NA            en 2016-10-08 04:50:07
 #> 496 529 2016-10-08 04:50:08       NA            en 2016-10-08 04:50:08
 #> 497 531 2016-10-08 07:49:07       NA            en 2016-10-08 07:49:07
 #> 498 532 2016-10-08 07:49:07       NA            en 2016-10-08 07:49:07
+#> 499 533 2016-10-08 07:52:01       NA            en 2016-10-08 07:52:01
+#> 500 534 2016-10-08 07:52:01       NA            en 2016-10-08 07:52:01
 #>               datestamp ipaddr packageName                        feedback
-#> 493 2016-10-08 04:43:42           LimeRick Adding feedback directly from R
-#> 494 2016-10-08 04:43:43           LimeRick       Good job! (Kamil, Poland)
 #> 495 2016-10-08 04:50:07           LimeRick Adding feedback directly from R
 #> 496 2016-10-08 04:50:08           LimeRick       Good job! (Kamil, Poland)
 #> 497 2016-10-08 07:49:07           LimeRick Adding feedback directly from R
 #> 498 2016-10-08 07:49:07           LimeRick       Good job! (Kamil, Poland)
+#> 499 2016-10-08 07:52:01           LimeRick Adding feedback directly from R
+#> 500 2016-10-08 07:52:01           LimeRick       Good job! (Kamil, Poland)
 #>       sector country
-#> 493 academia  Poland
-#> 494 academia  Poland
 #> 495 academia  Poland
 #> 496 academia  Poland
 #> 497 academia  Poland
 #> 498 academia  Poland
+#> 499 academia  Poland
+#> 500 academia  Poland
 ```
 
 ### Adding responses via R
@@ -196,14 +204,14 @@ response = list('683736X2X27' = "LimeRick",
 
 # adding the above response 
 lsAddResponse(surveyID, response)
-#> [1] "533"
+#> [1] "535"
 
 # or adding via wrapper function
 lsAddFeedback(feedback = "Good job! (Kamil, Poland)", 
               sector = "academia", 
               country = "Poland")
 #> Thank you for the feedback!
-#> [1] "534"
+#> [1] "536"
 ```
 
 See also:
