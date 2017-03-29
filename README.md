@@ -40,7 +40,7 @@ devtools::install_github("kalimu/LimeRick")
 ``` r
 library(LimeRick)
 #> 
-#> Welcome to LimeRick package version: 0.0.0.9000
+#> Welcome to LimeRick package version: 0.0.1.9000
 #> 
 #> Homepage: http://www.wais.kamil.rzeszow.pl/LimeRick
 #> 
@@ -61,7 +61,7 @@ library(LimeRick)
 
 ``` r
 # set link to the LimeSurvey API on the demo remote server
-options(lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol')
+options(lsAPIurl = 'http://odgar.pl/survey/index.php/admin/remotecontrol')
 
 # set LimeSurvey user login data for survey testing purposes
 options(lsUser = "LimeRickDemo")
@@ -77,7 +77,7 @@ lsAPI(method = "release_session_key")
 
 # API call using a wrapper function
 lsSessionKey("release")
-#> Connecting to: http://odgar.net/survey/index.php/admin/remotecontrol 
+#> Connecting to: http://odgar.pl/survey/index.php/admin/remotecontrol 
 #> Releasing session key...
 #> [1] "OK"
 ```
@@ -87,9 +87,9 @@ lsSessionKey("release")
 ``` r
 # getting session key for the user and saving it inside a special environment
 lsSessionKey("set")
-#> Connecting to: http://odgar.net/survey/index.php/admin/remotecontrol 
+#> Connecting to: http://odgar.pl/survey/index.php/admin/remotecontrol 
 #> Obtaining session key...
-#> [1] "dyivssahs2thq8ccxp6vj7py2yfkva4x"
+#> [1] "yagmrycvd49tmim3w4u3n23thimtp952"
 
 # if you work with specific local set it now
 Sys.setlocale("LC_ALL", "Polish")
@@ -112,10 +112,10 @@ surveyID = surveyList$sid[1]
 
 ``` r
 # try submit your own answers to the demo survey
-browseURL(paste0("http://odgar.net/survey/index.php/survey/index/sid/", surveyID))
+browseURL(paste0("http://odgar.pl/survey/index.php/survey/index/sid/", surveyID))
 ```
 
-or use this link: <http://odgar.net/survey/index.php/survey/index/sid/683736>
+or use this link: <http://odgar.pl/survey/index.php/survey/index/sid/683736>
 
 ### Listing survey questions
 
@@ -146,13 +146,13 @@ lsGetProperties('question', surveyID, 16)$mandatory
 ``` r
 lsGetSummary(surveyID)
 #> $completed_responses
-#> [1] "500"
+#> [1] "619"
 #> 
 #> $incomplete_responses
-#> [1] "3"
+#> [1] "46"
 #> 
 #> $full_responses
-#> [1] "503"
+#> [1] "665"
 ```
 
 ### Importing responses into R
@@ -161,26 +161,33 @@ lsGetSummary(surveyID)
 d = lsGetResponses(surveyID, completionStatus = 'complete')
 tail(d)
 #>      id          submitdate lastpage startlanguage           startdate
-#> 495 528 2016-10-08 04:50:07       NA            en 2016-10-08 04:50:07
-#> 496 529 2016-10-08 04:50:08       NA            en 2016-10-08 04:50:08
-#> 497 531 2016-10-08 07:49:07       NA            en 2016-10-08 07:49:07
-#> 498 532 2016-10-08 07:49:07       NA            en 2016-10-08 07:49:07
-#> 499 533 2016-10-08 07:52:01       NA            en 2016-10-08 07:52:01
-#> 500 534 2016-10-08 07:52:01       NA            en 2016-10-08 07:52:01
-#>               datestamp ipaddr packageName                        feedback
-#> 495 2016-10-08 04:50:07           LimeRick Adding feedback directly from R
-#> 496 2016-10-08 04:50:08           LimeRick       Good job! (Kamil, Poland)
-#> 497 2016-10-08 07:49:07           LimeRick Adding feedback directly from R
-#> 498 2016-10-08 07:49:07           LimeRick       Good job! (Kamil, Poland)
-#> 499 2016-10-08 07:52:01           LimeRick Adding feedback directly from R
-#> 500 2016-10-08 07:52:01           LimeRick       Good job! (Kamil, Poland)
-#>       sector country
-#> 495 academia  Poland
-#> 496 academia  Poland
-#> 497 academia  Poland
-#> 498 academia  Poland
-#> 499 academia  Poland
-#> 500 academia  Poland
+#> 614 661 2016-12-10 08:15:37       NA            en 2016-12-10 08:15:37
+#> 615 662 2016-12-10 08:15:39       NA            en 2016-12-10 08:15:39
+#> 616 673 2017-01-30 10:05:55        1            en 2017-01-30 10:05:24
+#> 617 675 2017-01-30 10:16:08       NA            en 2017-01-30 10:16:08
+#> 618 676 2017-01-30 10:17:38       NA            en 2017-01-30 10:17:38
+#> 619 680 2017-02-04 12:27:40        1            en 2017-02-04 12:27:39
+#>               datestamp   ipaddr packageName
+#> 614 2016-12-10 08:15:37             LimeRick
+#> 615 2016-12-10 08:15:39             LimeRick
+#> 616 2017-01-30 10:05:55 10.0.2.2    LimeRick
+#> 617 2017-01-30 10:16:08             LimeRick
+#> 618 2017-01-30 10:17:38             LimeRick
+#> 619 2017-02-04 12:27:40 10.0.2.2            
+#>                                                                                                                                                                                                                                                                                                                                                                                                                 feedback
+#> 614                                                                                                                                                                                                                                                                                                                                                                                      Adding feedback directly from R
+#> 615                                                                                                                                                                                                                                                                                                                                                                                            Good job! (Kamil, Poland)
+#> 616                                                                                                                                                                                                                                                                                                                                                                                                Sounds very promising
+#> 617                                                                                                                                                                                                                                                                                                                                                                                      Adding feedback directly from R
+#> 618                                                                                                                                                                                                                                                                                                                                                                                         Good job! (Jason, Liverpool)
+#> 619 Stress can have an unbelievable impact on health. It can come from a variety of sources and have a diversity of manifestations. The tips that are outlined below will aid in the identification of the factors that cause stress and in the steps that we can take to reduce its impacts or eliminate them entirely. \n \n<a href=https://www.acheterviagrafr24.com/viagra-prix-en-france/>viagra prix en france</a>
+#>       sector        country
+#> 614 academia         Poland
+#> 615 academia         Poland
+#> 616 academia United Kingdom
+#> 617 academia United Kingdom
+#> 618 academia United Kingdom
+#> 619            South Africa
 ```
 
 ### Adding responses via R
@@ -204,14 +211,14 @@ response = list('683736X2X27' = "LimeRick",
 
 # adding the above response 
 lsAddResponse(surveyID, response)
-#> [1] "535"
+#> [1] "697"
 
 # or adding via wrapper function
 lsAddFeedback(feedback = "Good job! (Kamil, Poland)", 
               sector = "academia", 
               country = "Poland")
 #> Thank you for the feedback!
-#> [1] "536"
+#> [1] "698"
 ```
 
 See also:

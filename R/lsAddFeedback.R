@@ -14,7 +14,7 @@ lsAddFeedback = function(feedback,
                          ){
 
 
-    lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol'
+    lsAPIurl = 'http://odgar.pl/survey/index.php/admin/remotecontrol'
     user = "LimeRickDemo"
     pass = "LimeRickDemo"
     surveyID = 683736

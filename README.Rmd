@@ -74,7 +74,7 @@ library(LimeRick)
 
 ```{r, echo=TRUE, eval=TRUE, cache=FALSE}
 # set link to the LimeSurvey API on the demo remote server
-options(lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol')
+options(lsAPIurl = 'http://odgar.pl/survey/index.php/admin/remotecontrol')
 
 # set LimeSurvey user login data for survey testing purposes
 options(lsUser = "LimeRickDemo")
@@ -116,9 +116,9 @@ surveyID = surveyList$sid[1]
 
 ```{r, echo=TRUE, eval=FALSE, cache=FALSE}
 # try submit your own answers to the demo survey
-browseURL(paste0("http://odgar.net/survey/index.php/survey/index/sid/", surveyID))
+browseURL(paste0("http://odgar.pl/survey/index.php/survey/index/sid/", surveyID))
 ```
-or use this link: http://odgar.net/survey/index.php/survey/index/sid/683736
+or use this link: http://odgar.pl/survey/index.php/survey/index/sid/683736
 
 ### Listing survey questions
 

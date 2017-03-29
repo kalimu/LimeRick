@@ -10,7 +10,7 @@ lsGetPackageStats = function(packageName = "LimeRick",
                              usageStats = getOption("LimeRickStats")
                              ){
 
-    lsAPIurl = 'http://odgar.net/survey/index.php/admin/remotecontrol'
+    lsAPIurl = 'http://odgar.pl/survey/index.php/admin/remotecontrol'
     user = "RStats"
     pass = "45hadfjHPOout5tg"
     surveyID = 456716
